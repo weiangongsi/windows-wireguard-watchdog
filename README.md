@@ -85,7 +85,7 @@ Endpoint = xxx.yyy.com:51820
 
 ## 创作不易，欢迎打赏
 
-<img src="https://gitee.com/dcssn_weiangongsi/windows-wireguard-watchdog/raw/master/img/wechat-payment-code.jpg" style="zoom:30%;" />
-<img src="https://gitee.com/dcssn_weiangongsi/windows-wireguard-watchdog/raw/master/img/ali-payment-code.jpg" style="zoom:20%;" />
+<img src="https://gitee.com/dcssn_weiangongsi/windows-wireguard-watchdog/raw/master/img/wechat-payment-code.jpg" style="width:200px" />
+<img src="https://gitee.com/dcssn_weiangongsi/windows-wireguard-watchdog/raw/master/img/ali-payment-code.jpg" style="width:200px" />
 
 1分钱就可以
