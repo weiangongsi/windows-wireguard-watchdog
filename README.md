@@ -41,7 +41,7 @@ Wireguard不会用我们配置的DNS获取IP，我们通过配置的DNS检测到
 	```shell
 	.\nssm.exe start MyWireGuardService
 	```
-   现在脚本就作为Windows服务运行了，你可以打开Wireguard的UI查看日志，任务管理器查看Wireguard的进程。
+   现在脚本就作为Windows服务运行了，电脑重启开机Wiregurd会自动连接。你可以打开Wireguard的UI查看日志，任务管理器查看Wireguard的进程。
    
 ## 关闭脚本服务
 
