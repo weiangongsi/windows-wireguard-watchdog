@@ -27,8 +27,8 @@ Wireguard不会用我们配置的DNS获取IP，我们通过配置的DNS检测到
 	$WireguardConfigFilePath = "C:\Users\admin\Desktop\company.conf" 
 	# 检查IP变更时间间隔，秒
 	$IntervalSeconds = 10
-	# DNS服务器地址,不设置会从 wireguard 配置文件中读取DNS参数。我的域名是阿里的，39.96.153.52是dns9.hichina.com的ip，能立即检测到域名解析的ip变更
-	$DNS = "39.96.153.52" 
+	# DNS服务器地址,不设置会从 wireguard 配置文件中读取DNS参数。我的域名是阿里的，dns9.hichina.com是阿里分配DNS服务器（阿里后台域名解析设置页面能看到这个地址），能立即检测到域名解析的ip变更
+	$DNS = "dns9.hichina.com" 
 	```
 	
 2. 用powershell终端管理员执行

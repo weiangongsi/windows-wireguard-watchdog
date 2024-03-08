@@ -3,7 +3,7 @@ $WireguardConfigFilePath = "C:\Users\admin\Desktop\company.conf"
 # 检查IP变更时间间隔
 $IntervalSeconds = 10
 # DNS服务器地址,不设置会从 wireguard 配置文件中读取
-$DNS = "39.96.153.52"
+$DNS = "dns9.hichina.com"
 
 # 通过文件路径获取文件名（不包含扩展名）
 function getFilenameByPath {
@@ -32,7 +32,18 @@ function getDNSByFile {
         [string]$path
     )
     if ($DNS) {
-        return $DNS
+        $domainPattern = '^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$'
+        $ipv4Pattern = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+        if ($DNS -match $domainPattern) {
+            $DnsIPAddress = getDnsIp -domain $DNS -DnsServer "114.114.114.114"
+            if ($DnsIPAddress -ne "failed") {
+                return $DnsIPAddress
+            }
+        }
+        elseif ($DNS -match $ipv4Pattern) {
+            return $DNS
+        }
+        return "114.114.114.114"
     }
     Get-Content -Path $path | ForEach-Object { 
         if ($_ -like "*DNS*") {
@@ -97,6 +108,7 @@ function Stop-WireGuardServic {
     Write-Host "stop wireguard"
     Invoke-Expression "wireguard /uninstalltunnelservice $TunnelName"
 }
+
 # 隧道名称
 $TunnelName = getFilenameByPath -path $WireguardConfigFilePath
 # 服务端连接域名
@@ -119,6 +131,7 @@ while ($true) {
         $DnsFailedCount = $DnsFailedCount + 1
         if ($DnsFailedCount -eq 3) {
             Stop-WireGuardServic -TunnelName $TunnelName
+            $DnsServer = getDNSByFile -path $WireguardConfigFilePath
             $DnsFailedCount = 1
         }
     }
